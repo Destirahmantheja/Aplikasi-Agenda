@@ -25,11 +25,11 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String query = "CREATE TABLE" + TABLE_NAME + "(" +
-                FIELD_ID + "INTEGER PRIMARY KEY AUTOINCREMENT," +
-                FIELD_TANGGAL + "VARCHAR(16)," +
-                FIELD_JAM + "VARCHAR(5), " +
-                FIELD_KEGIATAN + "VARCHAR(150) ); ";
+        String query = "CREATE TABLE " + TABLE_NAME + "(" +
+                FIELD_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
+                FIELD_TANGGAL + " VARCHAR (16)," +
+                FIELD_JAM + " VARCHAR(5), " +
+                FIELD_KEGIATAN + " VARCHAR(150) ); ";
 
         db.execSQL(query);
 
@@ -37,7 +37,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        String query = "DROP TABLE IF EXISTS" + TABLE_NAME;
+        String query = "DROP TABLE IF EXISTS " + TABLE_NAME;
         db.execSQL(query);
         onCreate(db);
     }
@@ -47,8 +47,12 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
         ContentValues cv = new ContentValues();
 
         cv.put(FIELD_TANGGAL, tanggal);
-        cv.put(FIELD_TANGGAL, jam);
-        cv.put(FIELD_TANGGAL, kegiatan);
+        cv.put(FIELD_JAM, jam);
+        cv.put(FIELD_KEGIATAN, kegiatan);
+
+        long eksekusi = db.insert(TABLE_NAME, null, cv);
+        return eksekusi;
     }
 }
-}
+
+
