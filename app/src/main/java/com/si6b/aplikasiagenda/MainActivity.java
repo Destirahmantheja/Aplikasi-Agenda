@@ -51,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void tampilAgenda(){
         Cursor varCursor = myDB.bacaDataAgenda();
+
         if(varCursor.getCount() == 0){
             Toast.makeText(this, "Tidak ada data", Toast.LENGTH_SHORT).show();
         }
@@ -77,5 +78,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        tampilAgenda();
     }
 }
